@@ -1,16 +1,17 @@
 #include <stdio.h>
-#include<string.h>
+#include <string.h>
 #define MAX 100
 #define alunomax 20
 struct pessoa{
-	int cpf[11],id,data[10];
+	int  id;
 	int situac;
-	char nome[MAX];
+	char cpf[20],data[20],nome[MAX];
 };
 struct pessoa aluno[alunomax];
 
 int menu=0;
-int contpessoa=1,remover=0,pesquisa=0,atualizar=0,contListar=1;
+char pesquisa[MAX];
+int contpessoa=1,remover=0,atualizar=0,contListar=1,resultpesqui,i;
 int main()
 {
 	
@@ -18,17 +19,20 @@ int main()
 		func_print();
 		scanf("%d",&menu);
 		
-		while(menu==1)
+		if(menu==1)
 		{
 			func_cadastrar();
+			
 		}
 		if(menu==2)
 		{
 			func_listar();
+			
 		}
 		if(menu==3)
 		{
 			func_pesquisar();
+			
 		}
 		if(menu==4)
 		{
@@ -59,33 +63,36 @@ int func_cadastrar()
 {
 	if(contpessoa<21){
 	printf("\t\tVoce escolheu CADASTRAR\n");
-	printf("\t\tInsira o nome\n");
-	gets(aluno[contpessoa].nome);
-	scanf("%*s");
+	printf("\t\tInsira o nome:");
+	fflush(stdin);
+	fgets(aluno[contpessoa].nome, MAX-1, stdin);
+	printf("\n\t\tDigite ENTER para confirmar\n");
+	getchar();
+	printf("\t\tInsira seu cpf:");
+	fflush(stdin);
+	fgets(aluno[contpessoa].cpf, 20-1, stdin);
+	printf("\n\t\tDigite ENTER para confirmar\n");
+	getchar();
+	printf("\t\tInsira a sua data de nascimento:");
+	fflush(stdin);
+	fgets(aluno[contpessoa].data, 20-1, stdin);
+	printf("\n\t\tDigite ENTER para confirmar");
+	getchar();
 	aluno[contpessoa].situac=1;
 	aluno[contpessoa].id=contpessoa;
-
-	printf("\t\tInsira seu cpf\n");
-	scanf("%s", aluno[contpessoa].cpf);
-	
-
-	printf("\t\tInsira a sua data de nascimento");
-	scanf("%s",aluno[contpessoa].data);
-	
 	contpessoa++;
 	}
 
-	func_print();
-	scanf("%d",&menu);
 }
 int func_listar()
 {
 	printf("\t\tVoce escolheu LISTAR\n");
+
 	
 	
 	for(contListar=1;contListar<contpessoa;contListar++){
-			if(aluno[contListar].situac=1){	
-			printf("Aluno \nNome: %s\n Cpf: %s\n Data de nascimento: %s\n", aluno[contListar].nome, aluno[contListar].cpf, aluno[contListar].data);
+			if(aluno[contListar].situac==1){	
+			printf("\t\t--------------------\n\t\t\tAluno\n\t\t--------------------\n\t\tNome: %s\n\t\tCpf: %s\n\t\tData de nascimento: %s\n\t\tID:%d\n", aluno[contListar].nome, aluno[contListar].cpf, aluno[contListar].data,aluno[contListar].id);
 		}
 	}
 	
@@ -94,48 +101,49 @@ int func_pesquisar()
 {
 	printf("\t\tVoce escolheu PESQUISAR\n");
 
-	printf("Selecione o id que deseja pesquisar");
-	scanf("%d",&pesquisa);
+	printf("\t\tSelecione o nome que deseja pesquisar:");
+	fflush(stdin);
+	fgets(pesquisa, MAX-1, stdin);
+	printf("\t\tDigite ENTER para confirmar");
 	getchar();
-	
-	if(pesquisa<=contpessoa){
-		printf("Aluno:\nNome: %s\n Cpf: %s\n Data de nascimento: %s\n", aluno[pesquisa].nome, aluno[pesquisa].cpf, aluno[pesquisa].data);
+	printf("%s",aluno[contpessoa].nome);
+	for(i=1;i<contpessoa;i++){
+		resultpesqui=strcmp(aluno[i].nome,pesquisa);
+		if(resultpesqui == 0){
+			printf("\t\t--------------------\n\t\t\tAluno\n\t\t--------------------\n\t\tNome: %s\n\t\tCpf: %s\n\t\tData de nascimento: %s\n\t\tID:%d\n\t\tSituacao:%d\n", aluno[i].nome, aluno[i].cpf, aluno[i].data,aluno[i].id,aluno[i].situac);
+		}
 	}
-
-	else printf("Aluno não cadastrado");
-		pesquisa=0;	
+			
 }
 int func_atualizar()
 {
 	printf("\t\tVoce escolheu ATUALIZAR\n");
-
-	printf("Selecione o id que deseja atualizar");
+    printf("\t\tInsira o id do aluno a atualizar:");
 	scanf("%d",&atualizar);
+	printf("\n\t\tInsira o nome:");
+	fflush(stdin);
+	fgets(aluno[atualizar].nome,MAX-1,stdin);
+	printf("\n\t\tDigite ENTER para confirmar\n");
 	getchar();
-	
-	printf("\t\tInsira o nome\n");
-	fgets(aluno[atualizar].nome, MAX-1, stdin);
+	printf("\t\tInsira seu cpf:");
+	fflush(stdin);
+	fgets(aluno[atualizar].cpf,20-1,stdin);
+	printf("\n\t\tDigite ENTER para confirmar\n");
 	getchar();
-
-	printf("\t\tInsira seu cpf\n");
-	scanf("%s", aluno[atualizar].cpf);
+	printf("\t\tInsira a sua data de nascimento:");
+	fflush(stdin);
+	fgets(aluno[atualizar].data,10-1,stdin);
+	printf("\n\t\tDigite ENTER para confirmar\n");
 	getchar();
-
-	printf("\t\tInsira a sua data de nascimento");
-	scanf("%s",aluno[atualizar].data);
-	getchar();
-
 	aluno[atualizar].situac=1;
-	
-	
-	
+	aluno[atualizar].id = atualizar;
+	scanf("%*s");
+	}
 }
 int func_remover()
 {
 	printf("\t\tVoce escolheu REMOVER\n");
-	printf("Insira qual aluno deseja remover");
+	printf("\t\tInsira qual aluno deseja remover:");
 	scanf("%d", &remover);
-	getchar();
 	aluno[remover].situac=0;
-	
 }
