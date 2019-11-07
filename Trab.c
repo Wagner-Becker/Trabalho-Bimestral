@@ -66,11 +66,11 @@ int func_cadastrar()
 
 	printf("\t\tInsira seu cpf\n");
 	scanf("%s", aluno[contpessoa].cpf);
-	gets(aluno[contpessoa].cpf);
+	getchar();
 
 	printf("\t\tInsira a sua data de nascimento");
 	scanf("%s",aluno[contpessoa].data);
-	gets(aluno[contpessoa].data);
+	getchar();
 
 	aluno[contpessoa].situac=1;
 	aluno[contpessoa].id=contpessoa;
@@ -85,9 +85,9 @@ int func_listar()
 	printf("\t\tVoce escolheu LISTAR\n");
 	
 	
-	for(contlistar=1;contListar<contpessoa;contlistar++){
+	for(contListar=1;contListar<contpessoa;contListar++){
 			if(aluno[contListar].situac=1){	
-			printf("Aluno \nNome: %s\n Cpf: %s\n Data de nascimento: %s\n", aluno[contListar].nome, aluno.cpf, aluno.data);
+			printf("Aluno \nNome: %s\n Cpf: %s\n Data de nascimento: %s\n", aluno[contListar].nome, aluno[contListar].cpf, aluno[contListar].data);
 		}
 	}
 	
@@ -98,6 +98,7 @@ int func_pesquisar()
 
 	printf("Selecione o id que deseja pesquisar");
 	scanf("%d",&pesquisa);
+	getchar();
 	
 	if(pesquisa<=contpessoa){
 		printf("Aluno:\nNome: %s\n Cpf: %s\n Data de nascimento: %s\n", aluno[pesquisa].nome, aluno[pesquisa].cpf, aluno[pesquisa].data);
@@ -112,6 +113,7 @@ int func_atualizar()
 
 	printf("Selecione o id que deseja atualizar");
 	scanf("%d",&atualizar);
+	gatchar();
 	
 	printf("\t\tInsira o nome\n");
 	fgets(aluno[atualizar].nome, MAX-1, stdin);
@@ -119,11 +121,11 @@ int func_atualizar()
 
 	printf("\t\tInsira seu cpf\n");
 	scanf("%s", aluno[atualizar].cpf);
-	gets(aluno[atualizar].cpf);
+	getschar();
 
 	printf("\t\tInsira a sua data de nascimento");
 	scanf("%s",aluno[atualizar].data);
-	gets(aluno[atualizar].data);
+	getchar();
 
 	aluno[atualizar].situac=1;
 	
@@ -135,6 +137,7 @@ int func_remover()
 	printf("\t\tVoce escolheu REMOVER\n");
 	printf("Insira qual aluno deseja remover");
 	scanf("%d", &remover);
+	getchar();
 	aluno[remover].situac=0;
 	
 }
