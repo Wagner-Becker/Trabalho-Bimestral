@@ -3,7 +3,7 @@
 #define MAX 100
 #define alunomax 20
 struct pessoa{
-	int cpf[11],id[100],data[10];
+	int cpf[11],id,data[10];
 	int situac;
 	char nome[MAX];
 };
@@ -59,21 +59,19 @@ int func_cadastrar()
 {
 	if(contpessoa<21){
 	printf("\t\tVoce escolheu CADASTRAR\n");
-
 	printf("\t\tInsira o nome\n");
-	fgets(aluno[contpessoa].nome, MAX-1, stdin);
-	getchar();
+	gets(aluno[contpessoa].nome);
+	scanf("%*s");
+	aluno[contpessoa].situac=1;
+	aluno[contpessoa].id=contpessoa;
 
 	printf("\t\tInsira seu cpf\n");
 	scanf("%s", aluno[contpessoa].cpf);
-	getchar();
+	
 
 	printf("\t\tInsira a sua data de nascimento");
 	scanf("%s",aluno[contpessoa].data);
-	getchar();
-
-	aluno[contpessoa].situac=1;
-	aluno[contpessoa].id=contpessoa;
+	
 	contpessoa++;
 	}
 
@@ -113,7 +111,7 @@ int func_atualizar()
 
 	printf("Selecione o id que deseja atualizar");
 	scanf("%d",&atualizar);
-	gatchar();
+	getchar();
 	
 	printf("\t\tInsira o nome\n");
 	fgets(aluno[atualizar].nome, MAX-1, stdin);
@@ -121,7 +119,7 @@ int func_atualizar()
 
 	printf("\t\tInsira seu cpf\n");
 	scanf("%s", aluno[atualizar].cpf);
-	getschar();
+	getchar();
 
 	printf("\t\tInsira a sua data de nascimento");
 	scanf("%s",aluno[atualizar].data);
