@@ -1,3 +1,5 @@
+//Wagner Augusto Becker
+//Pedro Henrique Fatuch
 #include <stdio.h>
 #include <string.h>
 #define MAX 100
@@ -132,13 +134,12 @@ int func_atualizar()
 	getchar();
 	printf("\t\tInsira a sua data de nascimento:");
 	fflush(stdin);
-	fgets(aluno[atualizar].data,10-1,stdin);
+	fgets(aluno[atualizar].data,20-1,stdin);
 	printf("\n\t\tDigite ENTER para confirmar\n");
 	getchar();
 	aluno[atualizar].situac=1;
 	aluno[atualizar].id = atualizar;
-	scanf("%*s");
-	}
+	getchar();
 }
 int func_remover()
 {
@@ -147,3 +148,5 @@ int func_remover()
 	scanf("%d", &remover);
 	aluno[remover].situac=0;
 }
+//Wagner Augusto Becker
+//Pedro Henrique Fatuch
